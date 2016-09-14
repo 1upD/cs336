@@ -68,6 +68,10 @@ var student = new Student("Derek", "November 13, 1994", "Computer Science");
 // Print a student greeting
 student.Greet();
 // How old am I?
-console.log(student.getAge())
+console.log(student.getAge());
 // What's my major?
 console.log(student.subject);
+// Is student an instance of Person?
+console.log(student instanceof Person);
+// Is student an instance of Student?
+console.log(student instanceof Student);
