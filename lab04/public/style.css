@@ -1,0 +1,183 @@
+/* Font style for all characters. Use cursive point 16 comic sans. */
+body
+	{
+	background: url("/static/Blue-rule.png");
+	font: 16px helvetica, arial, sans-serif;
+	}
+
+/* Header 3 border */
+h3 	{
+	border-top: 1px solid gray;
+	clear: left;
+	}
+
+p {
+  color: blue;
+}
+
+p:before
+	{
+	content: " " url("/static/Yellow-pin.png");
+	}
+
+/* style for bold characters */
+strong
+	{
+	background-color: #ddf;
+	color:red;
+	font: 32px serif;
+	}
+
+/* style for initial letter C in first paragraph */
+.carrot
+	{
+	/*color: orange;*/
+	}
+
+/* style for other first letters in first paragraph */
+.spinach
+	{
+	color: green;
+	background-color: #ddf;
+	}
+#first
+	{
+	font-style: italic;
+	}
+
+/* Homepage box */
+a.homepage:link, a.homepage:visited
+	{
+	padding: 1px 10px 1px 10px;
+	color: #fff;
+	background: #555;
+	border-radius: 3px;
+	border: 1px outset rgba(50,50,50,.5);
+	font-family: georgia, serif;
+	font-size: 14px;
+	font-style: italic;
+	text-decoration: none;
+	}
+
+a.homepage:hover, a.homepage:focus, a.homepage:active
+	{
+	background-color: #666;
+	}
+
+/* Lists */
+h3.numbered
+	{
+	counter-reset: mynum;
+	}
+ 
+p.numbered:before
+	{
+	content: counter(mynum) ": ";
+	counter-increment: mynum;
+	font-weight: bold;
+	}
+ul, #numbered
+	{
+	border: 1em solid #69b;
+ 	padding-right:1em;
+	float: left;
+}
+
+li {
+  list-style: lower-roman;
+  margin-bottom: 8px;
+  }
+
+/* Table styling */
+
+#demo-table
+	{
+	font: 100% sans-serif;
+	background-color: #efe;
+	border-collapse: collapse;
+	empty-cells: show;
+	border: 1px solid #7a7;
+	}
+
+#demo-table > caption 
+	{
+	text-align: left;
+	font-weight: bold;
+	font-size: 200%;
+	border-bottom: .2em solid #4ca;
+	margin-bottom: .5em;
+	}
+
+
+/* basic shared rules */
+#demo-table th,
+#demo-table td 
+	{
+	text-align: right;
+	padding-right: .5em;
+	}
+
+#demo-table th
+	{
+	font-weight: bold;
+	padding-left: .5em;
+	}
+
+
+/* header */
+#demo-table > thead > tr:first-child > th
+	{
+	text-align: center;
+	color: blue;
+	}
+
+#demo-table > thead > tr + tr > th 
+	{
+	font-style: italic;
+	color: gray;
+	}
+
+/* fix size of superscript */
+#demo-table sup 
+	{
+	font-size: 75%;
+	}
+
+/* body */
+#demo-table td 
+	{
+	background-color: #cef;
+	padding:.5em .5em .5em 3em;
+	}
+
+#demo-table tbody th:after
+	{
+	content: ":";
+	}
+
+
+/* footer */
+#demo-table tfoot 
+	{
+	font-weight: bold;
+	}
+
+#demo-table tfoot th
+	{
+	color: blue;
+	}
+
+#demo-table tfoot th:after 
+	{
+	content: ":";
+	}
+
+#demo-table > tfoot td
+	{
+	background-color: #cee;
+	}
+
+#demo-table > tfoot > tr:first-child td 
+	{
+	border-top: .2em solid #7a7;
+	}

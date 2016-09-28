@@ -1,0 +1,3 @@
+Node.js is a JavaScript runtime environment that provides event-driven non-blocking I/O for web applications. Express is a web framework built on top of Node.js.
+
+packages.json provides information about a Node.js application and also manages dependencies. Packages a Node.js app require to run can be found in packages.json and automatically installed.

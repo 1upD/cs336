@@ -1,0 +1,14 @@
+{
+  "name": "lab04",
+  "version": "1.0.0",
+  "description": "Lab 4 Express server",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "drd26",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}

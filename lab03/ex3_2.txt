@@ -1,0 +1,5 @@
+Static files are static in that they cannot change dynamically the way that a web page can. The files can only be changed if they are changed remotely and redownloaded when the page is refreshed.
+
+The server continues to serve up hello world messages. When you access the port, it still serves the hello world message. The static files are accessed through the /static/ path.
+
+

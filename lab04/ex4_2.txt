@@ -1,0 +1,3 @@
+The HTML Validation service found no warnings or errors but advised to enclose my header 3 in a header 2 and a header 1. I agree with that assessment.
+
+The CSS Validation service found two errors regarding border properties in the homepage box. The validated CSS code used different white space and indentation than I used.
