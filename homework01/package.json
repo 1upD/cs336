@@ -1,0 +1,14 @@
+{
+  "name": "homework01",
+  "version": "1.0.0",
+  "description": "Homework 1 JSON Server application",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "drd26",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
