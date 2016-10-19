@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+		<meta charset="utf-8">
+		<title>Demo</title>
+</head>
+<body>
+		<a href="http://jquery.com/">jQuery</a>
+		<script src="node_modules/jquery/dist/jquery.js"></script>
+		<script>
+			$( document ).ready(function() {
+				$( "a" ).click(function(event) {
+							alert( "Thanks for visiting!" );
+				});
+				var newElement = document.createElement( "p" );
+				$(newElement).text("This paragraph has been added by jquery.");
+				$( "a").after( newElement );
+			});
+		</script>
+</body>
+</html>
