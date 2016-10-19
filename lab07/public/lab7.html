@@ -7,15 +7,20 @@
 <body>
 		<h1>jQuery & jQuery-UI</h1>
 		<input type="button" name="button" id="button" value="Get Data" >
-		<link rel="stylesheet" href="jquery-ui-1.12.1.custom/jquery-ui.min.css">
-		<script src="node_modules/jquery/dist/jquery.js"></script>
-		<script src="jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+		<link rel="stylesheet" href="/static/jquery-ui.css">
+		<script src="/static/jquery.js"></script>
+		<script src="/static/jquery-ui.js"></script>
 		<script>
 			$( document ).ready(function() {
 				$( "#button" ).button();
 				var newElement = document.createElement( "p" );
 				$(newElement).text("No data yet.");
 				$( "#button").after( newElement );
+				$("#button").click(function( event ) {
+					$.get("username", function( response ) {
+						$(newElement).text("Hello, " + response.username);
+					});
+				});
 			});
 		</script>
 </body>
