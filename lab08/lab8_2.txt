@@ -30,4 +30,15 @@ own state but not its own properties. However, a parent class may update the
   enable stateless behavior while states facilitate communication of data with the
   server.
 
-  
+
+b. i. The comments refresh within two seconds. The server's copy of comments.json
+changed just as if a new comment had been submitted, so the form updated
+automatically.
+b. ii. The state of the CommentBox is passed into the properties of the CommentList
+to update the comments.
+b. iii. Components should always represent the current state of the view so that
+most up to date data is available to the user.
+b. iv. Optimism is beneficial in this case because in almost all cases a new
+comment is accepted. In a case where the comment is not accepted, it is quickly
+taken down. In all other cases, the only noticable change is that the application
+adds the new comment more quickly.
