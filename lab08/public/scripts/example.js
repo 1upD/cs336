@@ -1,36 +1,5 @@
-/**
- * This file provided by Facebook is for non-commercial testing and evaluation
- * purposes only. Facebook reserves all rights not expressly granted.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
- * FACEBOOK BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
- * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
- * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- */
-
-var Comment = React.createClass({
-  rawMarkup: function() {
-    var md = new Remarkable();
-    var rawMarkup = md.render(this.props.children.toString());
-    return { __html: rawMarkup };
-  },
-
-  render: function() {
-    return (
-      <div className="comment">
-        <h2 className="commentAuthor">
-          {this.props.author}
-        </h2>
-        <span dangerouslySetInnerHTML={this.rawMarkup()} />
-      </div>
-    );
-  }
-});
-
 var CommentBox = React.createClass({
-  loadCommentsFromServer: function() {
+  loadCommentsFromServer: function(){
     $.ajax({
       url: this.props.url,
       dataType: 'json',
@@ -83,15 +52,16 @@ var CommentBox = React.createClass({
   }
 });
 
+// tutorial2.js
 var CommentList = React.createClass({
   render: function() {
-    var commentNodes = this.props.data.map(function(comment) {
-      return (
-        <Comment author={comment.author} key={comment.id}>
-          {comment.text}
-        </Comment>
-      );
-    });
+  var commentNodes = this.props.data.map(function(comment) {
+    return (
+      <Comment author={comment.author} key={comment.id}>
+        {comment.text}
+      </Comment>
+    );
+  });
     return (
       <div className="commentList">
         {commentNodes}
@@ -111,33 +81,55 @@ var CommentForm = React.createClass({
     this.setState({text: e.target.value});
   },
   handleSubmit: function(e) {
-    e.preventDefault();
-    var author = this.state.author.trim();
-    var text = this.state.text.trim();
-    if (!text || !author) {
-      return;
-    }
-    this.props.onCommentSubmit({author: author, text: text});
-    this.setState({author: '', text: ''});
-  },
+  e.preventDefault();
+  var author = this.state.author.trim();
+  var text = this.state.text.trim();
+  if (!text || !author) {
+    return;
+  }
+  this.props.onCommentSubmit({author: author, text: text});
+  // TODO: send request to the server
+  this.setState({author: '', text: ''});
+},
   render: function() {
     return (
+      <div className="commentForm">
       <form className="commentForm" onSubmit={this.handleSubmit}>
-        <input
-          type="text"
-          placeholder="Your name"
-          value={this.state.author}
-          onChange={this.handleAuthorChange}
-        />
-        <input
-          type="text"
-          placeholder="Say something..."
-          value={this.state.text}
-          onChange={this.handleTextChange}
-        />
+      <input
+        type="text"
+        placeholder="Your name"
+        value={this.state.author}
+        onChange={this.handleAuthorChange}
+      />
+      <input
+        type="text"
+        placeholder="Say something..."
+        value={this.state.text}
+        onChange={this.handleTextChange}
+      />
         <input type="submit" value="Post" />
       </form>
+      </div>
     );
+  }
+});
+
+// tutorial4.js
+var Comment = React.createClass({
+  rawMarkup: function() {
+   var md = new Remarkable();
+   var rawMarkup = md.render(this.props.children.toString());
+   return { __html: rawMarkup };
+  },
+  render: function() {
+   return (
+     <div className="comment">
+       <h2 className="commentAuthor">
+         {this.props.author}
+       </h2>
+       <span dangerouslySetInnerHTML={this.rawMarkup()} />
+     </div>
+   )
   }
 });
 
