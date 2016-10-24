@@ -1,0 +1,33 @@
+a. i. Each Comment is a separate self-contained element (modularity)
+that receives its information from the containing structure (stateless).
+The CommentList class provides modular and stateless access to multiple comments.
+The CommentBox and CommentForm classes are not stateless but they are modular
+and they refresh their state frequently from the server.
+
+It is important that the application is composable first because the size of the
+comment list changes dynamically depending on the server and also because it
+enables the possibility to re-order modular elements such as the CommentBox and
+CommentForm, or to re-use the CommentList class in a new class if the requirements
+change (IE ReplyBox)
+
+a. ii. JSX is an XML like Syntax used in React to specify rendered components.
+It is compiled into JavaScript. It is useful because it resembles HTML and gives
+a clearer picture of what the end result will look like from an HTML perspective.
+(It more closely resembles the DOM than JavaScript would)
+
+a.iii. When the script runs, it renders a new CommentBox. A CommentBox contains
+two structures: the CommentList and the CommentForm. Both of these have a state.
+The CommentBox initializes the data in its state as empty. Every two seconds the
+CommentBox makes an Ajax call to refresh its state with data from the server.
+CommentBox provides a callback function to CommentFrom that will refresh the state
+of CommentBox when CommentForm is submitted. The CommentList is populated from
+state data of the CommentBox.
+
+a.iv. Props are immutable, while states are mutable. A React class can change its
+own state but not its own properties. However, a parent class may update the
+ properties of its child elements, as in the case of the CommentBox updating the
+  properties of the CommentList. The distinction is important because properties
+  enable stateless behavior while states facilitate communication of data with the
+  server.
+
+  
