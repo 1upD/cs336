@@ -23,7 +23,13 @@
           <button type="submit">Submit your person</button>
       </div>
     </form>
+    <script src="/static/jquery/jquery.js"></script>
+    <script src="/static/jquery/jquery-ui.js"></script>
     <script>
+      // I referred to the following Stack Overflow answers for help:
+      // http://stackoverflow.com/a/2967101
+      // http://stackoverflow.com/a/8582435
+
       $( document ).ready(function() {
         $("form").submit(function( event ) {
           var form = $(this);
@@ -32,10 +38,14 @@
             type  : form.attr('method'),
             data  : form.serialize(), // data to be submitted
             success: function(response){
-              alert(response); // do what you like with the response
+              var newElement = document.createElement( "p" );
+      				$(newElement).text("Submitted successfully.");
+      				form.after( newElement );
             }
           });
+          return false; // This prevents default submit behavior
         });
+      });
     </script>
   </body>
 </html>

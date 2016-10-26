@@ -25,6 +25,7 @@ var bodyParser = require('body-parser')
 var app = express();
 app.use('/static', express.static(__dirname + '/public'));
 app.use('/static/forms', express.static(__dirname + '/public/forms'));
+app.use('/static/jquery', express.static(__dirname + '/public/forms'));
 
 // create application/x-www-form-urlencoded parser
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
