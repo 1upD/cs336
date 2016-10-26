@@ -87,24 +87,30 @@ app.get('/people', function (req, res) {
   sendJSON(res, people);
 });
 
-// Route /person/id returns one record by id
-app.get('/person/:id', function (req, res) {
-  var person = getPerson(req.params.id);
-  sendJSON(res, person);
-});
-
-app.post('/person/', urlencodedParser, function (req, res) {
+app.post('/people/', urlencodedParser, function (req, res) {
   newPerson = req.body;
   newPerson.id = nextId++;
   people.push(newPerson);
   sendJSON(res, newPerson);
 });
 
-app.put('/person/', urlencodedParser, function (req, res) {
+app.put('/people/', urlencodedParser, function (req, res) {
   newPerson = req.body;
   deletePerson(newPerson.id);
   people.push(newPerson);
   sendJSON(res, newPerson);
+});
+
+app.delete('/people/', urlencodedParser, function (req, res) {
+  var deletedPerson = getPerson(req.body.id)
+  deletePerson(req.body.id);
+  sendJSON(res, deletedPerson);
+});
+
+// Route /person/id returns one record by id
+app.get('/person/:id', function (req, res) {
+  var person = getPerson(req.params.id);
+  sendJSON(res, person);
 });
 
 
@@ -114,12 +120,6 @@ app.put('/person/:id', urlencodedParser, function (req, res) {
   deletePerson(newPerson.id);
   people.push(newPerson);
   sendJSON(res, newPerson);
-});
-
-app.delete('/person/', urlencodedParser, function (req, res) {
-  var deletedPerson = getPerson(req.body.id)
-  deletePerson(req.body.id);
-  sendJSON(res, deletedPerson);
 });
 
 app.delete('/person/:id', function (req, res) {
@@ -142,6 +142,10 @@ app.get('/person/:id/years', function (req, res) {
 
 // Form to add a person
 app.get('/form', function (req, res) {
+  res.status(HttpStatus.OK).sendFile(__dirname + '/public/forms/index.html');
+});
+
+app.get('/', function (req, res) {
   res.status(HttpStatus.OK).sendFile(__dirname + '/public/forms/index.html');
 });
 
