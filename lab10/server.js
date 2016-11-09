@@ -19,7 +19,7 @@ var MongoClient = require('mongodb').MongoClient
 var dbConnection;
 
 
-MongoClient.connect('mongodb://cs336:PASSWORD@ds049624.mlab.com:49624/cs336', function (err, db) {
+MongoClient.connect('mongodb://cs336:bjarne@ds049624.mlab.com:49624/cs336', function (err, db) {
   if (err) throw err
   dbConnection = db;
 });
@@ -44,33 +44,35 @@ app.use(function(req, res, next) {
 });
 
 app.get('/api/comments', function(req, res) {
-  //findDocuments(dbConnection, res.json);
+  // Get the documents collection
+  var collection = dbConnection.collection('comments');
+  // Find some documents
+  collection.find({}).toArray(function(err, docs) {
+    if(err){
+      console.error(err);
+    }
+    res.json(docs);
+  });
 });
 
 app.post('/api/comments', function(req, res) {
-  fs.readFile(COMMENTS_FILE, function(err, data) {
-    if (err) {
+  // NOTE: In a real implementation, we would likely rely on a database or
+  // some other approach (e.g. UUIDs) to ensure a globally unique id. We'll
+  // treat Date.now() as unique-enough for our purposes.
+  var newComment = {
+    id: Date.now(),
+    author: req.body.author,
+    text: req.body.text,
+  };
+  // Get the documents collection
+  var collection = dbConnection.collection('comments');
+  // Insert some documents
+  collection.insert(newComment, function(err, result) {
+    if(err){
       console.error(err);
-      process.exit(1);
     }
-    var comments = JSON.parse(data);
-    // NOTE: In a real implementation, we would likely rely on a database or
-    // some other approach (e.g. UUIDs) to ensure a globally unique id. We'll
-    // treat Date.now() as unique-enough for our purposes.
-    var newComment = {
-      id: Date.now(),
-      author: req.body.author,
-      text: req.body.text,
-    };
-    comments.push(newComment);
-    fs.writeFile(COMMENTS_FILE, JSON.stringify(comments, null, 4), function(err) {
-      if (err) {
-        console.error(err);
-        process.exit(1);
-      }
-      res.json(comments);
-    });
   });
+
 });
 
 
