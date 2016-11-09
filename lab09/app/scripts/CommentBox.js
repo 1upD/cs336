@@ -1,12 +1,13 @@
 import React from 'react';
+import ReactDOM from 'react-dom'
 import $ from 'jquery';
 
 import '../css/base.css';
 
-import CommentList from './CommentList.js';
 import CommentForm from './CommentForm.js';
+import CommentList from './CommentList.js';
 
-var CommentBox = React.createClass({
+module.exports = React.createClass({
   loadCommentsFromServer: function(){
     $.ajax({
       url: this.props.url,

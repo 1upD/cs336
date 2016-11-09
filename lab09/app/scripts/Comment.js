@@ -1,9 +1,9 @@
 import React from 'react';
+import ReactDOM from 'react-dom'
+import $ from 'jquery';
 import Remarkable from 'remarkable';
 
-import '../css/base.css';
-
-var Comment = React.createClass({
+module.exports = React.createClass({
   rawMarkup: function() {
    var md = new Remarkable();
    var rawMarkup = md.render(this.props.children.toString());

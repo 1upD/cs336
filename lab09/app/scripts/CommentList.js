@@ -1,10 +1,10 @@
 import React from 'react';
+import ReactDOM from 'react-dom'
+import $ from 'jquery';
 
-import '../css/base.css';
+import Comment from './Comment.js'
 
-import Comment from './Comment.js';
-
-var CommentList = React.createClass({
+module.exports =  React.createClass({
   render: function() {
   var commentNodes = this.props.data.map(function(comment) {
     return (

@@ -1,8 +1,8 @@
 import React from 'react';
+import ReactDOM from 'react-dom'
+import $ from 'jquery';
 
-import '../css/base.css';
-
-var CommentForm = React.createClass({
+module.exports = React.createClass({
   getInitialState: function() {
     return {author: '', text: ''};
   },
