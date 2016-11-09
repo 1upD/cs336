@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <title>Sample document</title>
+  <link rel="stylesheet" href="/static/forms/style.css">
+  </head>
+  <body>
+    <form action="/people" name="form" method="post">
+      <div>
+          <label for="firstname">First Name:</label>
+          <input type="text" id="firstname" name="firstname" />
+      </div>
+      <div>
+          <label for="lastname">Last Name:</label>
+          <input type="text" id="lastname" name="lastname" />
+      </div>
+      <div>
+          <label for="years">Years with organization:</label>
+          <textarea id="number" name="years"></textarea>
+      </div>
+      <div class="button">
+          <button type="submit">Submit your person</button>
+      </div>
+    </form>
+    <script src="/static/jquery/jquery.js"></script>
+    <script src="/static/jquery/jquery-ui.js"></script>
+    <script>
+      // I referred to the following Stack Overflow answers for help:
+      // http://stackoverflow.com/a/2967101
+      // http://stackoverflow.com/a/8582435
+
+      $( document ).ready(function() {
+        $("form").submit(function( event ) {
+          var form = $(this);
+          $.ajax({
+            url   : form.attr('action'),
+            type  : form.attr('method'),
+            data  : form.serializeArray(), // data to be submitted
+            success: function(response){
+              var newElement = document.createElement( "p" );
+      				$(newElement).text("Submitted successfully.");
+      				form.after( newElement );
+            }
+          });
+          return false; // This prevents default submit behavior
+        });
+      });
+    </script>
+  </body>
+</html>
