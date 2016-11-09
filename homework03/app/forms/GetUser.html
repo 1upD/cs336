@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <title>Sample document</title>
+  <link rel="stylesheet" href="/static/forms/style.css">
+  </head>
+  <body>
+    <form action="/person/" name="form" method="get">
+      <div>
+          <label for="id">Person ID:</label>
+          <textarea id="number" name="id"></textarea>
+      </div>
+      <div class="button">
+          <button type="submit">Submit request</button>
+      </div>
+    </form>
+    <script src="/static/jquery/jquery.js"></script>
+    <script src="/static/jquery/jquery-ui.js"></script>
+    <script>
+      $( document ).ready(function() {
+        $("form").submit(function( event ) {
+          var form = $(this);
+          var formData = form.serializeArray();
+          $.get(form.attr('action') + formData[0].value,formData, function(response){
+            var newElement = document.createElement( "p" );
+            $(newElement).text("Name: " + response.firstname + " " + response.lastname + "\tYears with organization: " + response.years);
+            form.after( newElement );
+          });
+          return false; // This prevents default submit behavior
+        });
+      });
+    </script>
+  </body>
+</html>
