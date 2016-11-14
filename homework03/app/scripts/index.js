@@ -4,10 +4,10 @@ import $ from 'jquery';
 
 import '../css/base.css';
 
-import CommentBox from './CommentBox.js'
+import PersonBox from './PersonBox.js'
 
 
 ReactDOM.render(
-  <CommentBox url="/api/comments" pollInterval={2000} />,
+  <PersonBox url="/api/people" pollInterval={2000} />,
   document.getElementById('content')
 );
