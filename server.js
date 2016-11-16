@@ -41,9 +41,9 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.get('/api/people', function(req, res) {
+app.get('/api/comments', function(req, res) {
   // Get the documents collection
-  var collection = dbConnection.collection('people');
+  var collection = dbConnection.collection('comments');
   // Find some documents
   collection.find({}).toArray(function(err, docs) {
     if(err){
@@ -53,20 +53,19 @@ app.get('/api/people', function(req, res) {
   });
 });
 
-app.post('/api/people', function(req, res) {
+app.post('/api/comments', function(req, res) {
   // NOTE: In a real implementation, we would likely rely on a database or
   // some other approach (e.g. UUIDs) to ensure a globally unique id. We'll
   // treat Date.now() as unique-enough for our purposes.
-  var newPerson = {
+  var newComment = {
     id: Date.now(),
-    firstname: req.body.firstname,
-    lastname: req.body.lastname,
-    years: req.body.years
+    author: req.body.author,
+    text: req.body.text,
   };
   // Get the documents collection
-  var collection = dbConnection.collection('people');
+  var collection = dbConnection.collection('comments');
   // Insert some documents
-  collection.insert(newPerson, function(err, result) {
+  collection.insert(newComment, function(err, result) {
     if(err){
       console.error(err);
     }
