@@ -74,6 +74,40 @@ app.post('/api/comments', function(req, res) {
 
 });
 
+app.get('/api/comments/:id', function(req, res) {
+    dbConnection.collection("comments").find({"id": Number(req.params.id)}).toArray(function(err, docs) {
+        if (err) throw err;
+        res.json(docs);
+    });
+});
+
+app.put('/api/comments/:id', function(req, res) {
+    var updateId = Number(req.params.id);
+    var update = req.body;
+    dbConnection.collection('comments').updateOne(
+        { id: updateId },
+        { $set: update },
+        function(err, result) {
+            if (err) throw err;
+            dbConnection.collection("comments").find({}).toArray(function(err, docs) {
+                if (err) throw err;
+                res.json(docs);
+            });
+        });
+});
+
+app.delete('/api/comments/:id', function(req, res) {
+    dbConnection.collection("comments").deleteOne(
+        {'id': Number(req.params.id)},
+        function(err, result) {
+            if (err) throw err;
+            dbConnection.collection("comments").find({}).toArray(function(err, docs) {
+                if (err) throw err;
+                res.json(docs);
+            });
+        });
+});
+
 // Catch-all route handler
 //app.use('*', express.static(APP_PATH));
 
