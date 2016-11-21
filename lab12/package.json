@@ -22,6 +22,7 @@
     "postcss-loader": "^1.1.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
+    "react-router": "^3.0.0",
     "remarkable": "^1.7.1",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.3"
@@ -33,7 +34,7 @@
     "install": "webpack --progress --config ./webpack.production.config.js",
     "start": "node server.js",
     "build": "webpack --progress",
-    "dev": "node server.js & webpack-dev-server --progress"
+    "dev": "node server.js & webpack-dev-server --progress --inline --content-base . --history-api-fallback"
   },
   "repository": {
     "type": "git",

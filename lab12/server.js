@@ -74,6 +74,8 @@ app.post('/api/comments', function(req, res) {
 
 });
 
+// Catch-all route handler
+//app.use('*', express.static(APP_PATH));
 
 app.listen(app.get('port'), function() {
   console.log('Server started: http://localhost:' + app.get('port') + '/');

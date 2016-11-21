@@ -6,8 +6,12 @@ import '../css/base.css';
 
 import CommentBox from './CommentBox.js'
 
+import { Router, Route, Redirect, browserHistory } from 'react-router';
 
 ReactDOM.render(
-  <CommentBox url="/api/comments" pollInterval={2000} />,
+  <Router history={browserHistory}>
+    <Route path="/" component={CommentBox}>
+    </Route>
+  </Router>,
   document.getElementById('content')
 );
