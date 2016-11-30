@@ -98,6 +98,17 @@ let Reducers = {
             .fail(function(xhr, status, errorThrown) {
                 console.error(API_URL, status, errorThrown.toString());
             }.bind(this));
+    },
+    deleteComment: function(action) {
+        $.ajax({
+            url: API_URL + "/" + action.id,
+            type: 'DELETE',
+        })
+            .done(function(comments){
+            }.bind(this))
+            .fail(function(xhr, status, errorThrown) {
+                console.error(API_URL, status, errorThrown.toString());
+            }.bind(this));
     }
 }
 
@@ -115,6 +126,7 @@ function commentsApp(state, action) {
         Reducers.editComment(action);
         return state;
       case 'DELETE_COMMENT':
+        Reducers.deleteComment(action);
         return state;
       default:
         return state;
